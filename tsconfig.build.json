@@ -1,0 +1,26 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "packages/@biothings-explorer/bte-trapi"
+    },
+    {
+      "path": "packages/biolink-model"
+    },
+    {
+      "path": "packages/biomedical_id_resolver"
+    },
+    {
+      "path": "packages/@biothings-explorer/smartapi-kg"
+    },
+    {
+      "path": "packages/@biothings-explorer/query_graph_handler"
+    },
+    {
+      "path": "packages/@biothings-explorer/call-apis"
+    },
+    {
+      "path": "packages/@biothings-explorer/api-response-transform"
+    }
+  ]
+}

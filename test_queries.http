@@ -1,0 +1,136 @@
+GET http://localhost:3000/metakg
+###
+
+GET http://localhost:3000/v1/predicates
+
+####
+
+GET http://localhost:3000/v1/meta_knowledge_graph
+
+####
+
+GET http://localhost:3000/v1/team/Textmining%20Provider/meta_knowledge_graph
+###
+
+GET http://localhost:3000/v1/smartapi/<smartapi_id>/meta_knowledge_graph
+###
+
+POST  http://localhost:3000/v1/query
+Content-Type: application/json
+
+{
+    "message": {
+        "query_graph": {
+            "edges": {
+                "e00": {
+                    "object": "n01",
+                    "subject": "n00",
+                    "predicates": "biolink:physically_interacts_with"
+                }
+            },
+            "nodes": {
+                "n00": {
+                    "categories": "biolink:ChemicalSubstance",
+                    "ids": "CHEMBL.COMPOUND:CHEMBL744"
+                },
+                "n01": {
+                    "categories": "biolink:Gene"
+                }
+            }
+        }
+    }
+}
+
+###
+
+POST  http://localhost:3000/v1/query
+Content-Type: application/json
+
+{
+    "message": {
+        "query_graph": {
+            "nodes": {
+                "n0": {
+                    "categories": "biolink:DiseaseOrPhenotypicFeature",
+                    "ids": "MONDO:0005015"
+                },
+                "n3": {
+                    "categories": "biolink:DiseaseOrPhenotypicFeature"
+                }
+            },
+            "edges": {
+                "e03": {
+                    "subject": "n0",
+                    "object": "n3"
+                }
+            }
+        }
+    }
+}
+
+####
+
+POST  http://localhost:3000/v1/query
+Content-Type: application/json
+
+{
+    "message": {
+        "query_graph": {
+            "nodes": {
+                "n0": {
+                    "categories": [
+                        "biolink:ChemicalSubstance"
+                    ],
+                    "name": "Chemical Substance"
+                },
+                "n1": {
+                    "name": "EGFR",
+                    "ids": [
+                        "NCBIGene:1956"
+                    ]
+                }
+            },
+            "edges": {
+                "e0": {
+                    "subject": "n0",
+                    "object": "n1",
+                    "predicates": [
+                        "biolink:decreases_abundance_of",
+                        "biolink:decreases_activity_of",
+                        "biolink:decreases_expression_of",
+                        "biolink:decreases_synthesis_of",
+                        "biolink:increases_degradation_of",
+                        "biolink:disrupts",
+                        "biolink:negatively_regulates_entity_to_entity"
+                    ]
+                }
+            }
+        }
+    }
+}
+
+####
+POST  http://localhost:3000/v1/query
+Content-Type: application/json
+
+{
+    "message": {
+        "query_graph": {
+            "nodes": {
+                "n0": {
+                    "ids": "OMIM:606703",
+                    "categories": "biolink:Disease"
+                },
+                "n1": {
+                    "categories": "biolink:Gene"
+                }
+            },
+            "edges": {
+                "e01": {
+                    "subject": "n0",
+                    "object": "n1"
+                }
+            }
+        }
+    }
+}

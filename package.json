@@ -1,0 +1,35 @@
+{
+  "name": "bte-trapi-monorepo",
+  "private": true,
+  "scripts": {
+    "clone": "./scripts/clone_packages.sh",
+    "pull": "./scripts/pull_packages.sh",
+    "watch": "tsc -b tsconfig.build.json --watch",
+    "watch2": "nodemon -e js,mjs,json,ts --watch packages --exec npm run compile",
+    "debug": "npm run debug --workspace='@biothings-explorer/bte-trapi'",
+    "clean": "rimraf \"packages/**/built\" \"packages/**/*.tsbuildinfo\"",
+    "compile": "tsc -b tsconfig.build.json",
+    "prettier": "prettier \"*.{js,json,yml,md}\" \"packages/**/*\"",
+    "format": "npm run prettier -- --write",
+    "format:check": "npm run prettier -- --check",
+    "lint": "npm run format:check",
+    "test": "lerna run test",
+    "prepare": "npm run compile"
+  },
+  "devDependencies": {
+    "lerna": "4.0.0",
+    "prettier": "2.3.1",
+    "rimraf": "3.0.2",
+    "nodemon": "^2.0.7",
+    "typescript": "4.3.4"
+  },
+  "workspaces": [
+    "./packages/@biothings-explorer/api-response-transform",
+    "./packages/@biothings-explorer/call-apis",
+    "./packages/@biothings-explorer/query_graph_handler",
+    "./packages/@biothings-explorer/smartapi-kg",
+    "./packages/biolink-model",
+    "./packages/biomedical_id_resolver",
+    "./packages/@biothings-explorer/bte-trapi"
+  ]
+}
