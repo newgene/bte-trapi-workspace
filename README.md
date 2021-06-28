@@ -1,8 +1,12 @@
 # bte-trapi-workspace
-A npm workspace setup for local development environment with all biothings explorer nodejs packages
+A npm workspace setup for local development environment with all biothings explorer nodejs packages.
 
+Modified from an example setup here: https://github.com/Quramy/npm-ts-workspaces-example
 
 ### Get started
+
+Npm workspace feature requires npm 7+. It's recommended to use node v15+, which comes with npm v7.
+You may consider using [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) to install a newer version of node.
 
 ```
 git clone git@github.com:biothings/bte-trapi-workspace.git
