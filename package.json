@@ -4,6 +4,7 @@
   "scripts": {
     "clone": "./scripts/clone_packages.sh",
     "pull": "./scripts/pull_packages.sh",
+    "git": "./scripts/run_git_packages.sh",
     "watch": "tsc -b tsconfig.build.json --watch",
     "watch2": "nodemon -e js,mjs,json,ts --watch packages --exec npm run compile",
     "debug": "npm run debug --workspace='@biothings-explorer/bte-trapi'",
