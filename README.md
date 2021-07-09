@@ -10,6 +10,9 @@ You may consider using [nvm](https://github.com/nvm-sh/nvm#installing-and-updati
 
 ```
 git clone git@github.com:biothings/bte-trapi-workspace.git
+# use https is supported too
+# git clone https://github.com/biothings/bte-trapi-workspace.git
+# in this case, all package repos will be cloned using https as well.
 cd bte-trapi-workspace
 
 # setup local bte repos under packages folder
