@@ -30,7 +30,7 @@ ln -s ../../../scripts/tsconfig.json_bte-trapi ./tsconfig.json
 # no need to do this after we commit the package name change to the repo
 if [ "$(uname)" = "Darwin" ]; then
     # sed on mac has a workaround to make it work
-    echo "sed -i '' 's/single-hop-app/bte-trapi/g' package.json"
+    sed -i '' 's/single-hop-app/bte-trapi/g' package.json
 else
     sed -i 's/single-hop-app/bte-trapi/g' package.json
 fi
