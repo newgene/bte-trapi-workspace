@@ -1,0 +1,15 @@
+{
+    "apps": [
+        {
+            "name": "bte-trapi",
+            "script": "npm",
+            "args" : ["start", "--workspace=@biothings-explorer/bte-trapi"],
+      	    "exec_mode": "cluster",
+            "autorestart": true,
+            "env": {
+       	        "NODE_ENV": "production",
+                "PORT": "3000"
+            }
+        }
+    ]
+}
