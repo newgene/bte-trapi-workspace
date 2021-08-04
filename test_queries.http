@@ -1,21 +1,70 @@
-GET http://localhost:3000/metakg
+# Switch to local, dev or prod environment
+# local: localhost:3000
+# dev: dev.api.bte.ncats.io
+# prod: api.bte.ncats.io
+
+###
+GET {{base_url}}/metakg
 ###
 
-GET http://localhost:3000/v1/predicates
+GET {{base_url}}/v1/predicates
 
 ####
 
-GET http://localhost:3000/v1/meta_knowledge_graph
+GET {{base_url}}/v1/meta_knowledge_graph
 
 ####
 
-GET http://localhost:3000/v1/team/Textmining%20Provider/meta_knowledge_graph
+GET {{base_url}}/v1/team/Textmining%20Provider/meta_knowledge_graph
 ###
 
-GET http://localhost:3000/v1/smartapi/<smartapi_id>/meta_knowledge_graph
+GET {{base_url}}/v1/smartapi/<smartapi_id>/meta_knowledge_graph
+
+
+###
+POST  {{base_url}}/v1/query
+Content-Type: application/json
+
+{
+    "message": {
+        "query_graph": {
+            "nodes": {
+                "n0": {
+                    "ids":["PUBCHEM.COMPOUND:2662"],
+                    "categories":["biolink:ChemicalSubstance"]
+                },
+                "n1": {
+                    "categories":["biolink:Disease"]
+               },
+               "n2": {
+                    "categories":["biolink:Pathway"]
+               },
+                "n3": {
+                    "categories":["biolink:Gene"],
+                       "ids":["HGNC:9604"]
+               }
+            },
+            "edges": {
+                "e0": {
+                    "subject": "n0",
+                    "object": "n1"
+                },
+                "e1": {
+                    "subject": "n1",
+                    "object": "n2"
+                },
+                "e2": {
+                    "subject": "n2",
+                    "object": "n3"
+                }
+            }
+        }
+    }
+}
+
 ###
 
-POST  http://localhost:3000/v1/query
+POST  {{base_url}}/v1/query
 Content-Type: application/json
 
 {
@@ -43,7 +92,7 @@ Content-Type: application/json
 
 ###
 
-POST  http://localhost:3000/v1/query
+POST  {{base_url}}/v1/query
 Content-Type: application/json
 
 {
@@ -70,7 +119,7 @@ Content-Type: application/json
 
 ####
 
-POST  http://localhost:3000/v1/query
+POST  {{base_url}}/v1/query
 Content-Type: application/json
 
 {
@@ -110,7 +159,8 @@ Content-Type: application/json
 }
 
 ####
-POST  http://localhost:3000/v1/query
+# This is a very quick query
+POST  {{base_url}}/v1/query
 Content-Type: application/json
 
 {
@@ -122,13 +172,381 @@ Content-Type: application/json
                     "categories": "biolink:Disease"
                 },
                 "n1": {
-                    "categories": "biolink:Gene"
+                    "categories": "biolink:Gene",
+                    "ids": "NCBIGene:1956"
                 }
             },
             "edges": {
                 "e01": {
                     "subject": "n0",
                     "object": "n1"
+                }
+            }
+        }
+    }
+}
+
+
+
+####
+# https://arax.ncats.io/?source=ARS&id=d1e70d25-9ee9-471e-a8a0-bcadf58faafe
+
+POST  {{base_url}}/v1/query
+Content-Type: application/json
+
+{
+    "message": {
+        "query_graph": {
+            "edges": {
+                "e0": {
+                "object": "n1",
+                "predicates": [
+                    "biolink:decreases_abundance_of",
+                    "biolink:decreases_activity_of",
+                    "biolink:decreases_expression_of",
+                    "biolink:decreases_synthesis_of",
+                    "biolink:increases_degradation_of",
+                    "biolink:disrupts",
+                    "biolink:negatively_regulates_entity_to_entity"
+                ],
+                "subject": "n0"
+                }
+            },
+            "nodes": {
+                "n0": {
+                "categories": [
+                    "biolink:ChemicalSubstance"
+                ],
+                "name": "Chemical Substance"
+                },
+                "n1": {
+                "ids": [
+                    "NCBIGene:1956"
+                ],
+                "name": "EGFR"
+                }
+            }
+        }
+    }
+}
+
+####
+
+POST  {{base_url}}/v1/query
+Content-Type: application/json
+
+{
+    "message": {
+        "query_graph": {
+            "nodes": {
+                "n0": {
+                    "ids": [
+                        "NCBIGene:1017"
+                    ],
+                    "categories": [
+                        "biolink:Gene"
+                    ]
+                },
+                "n1": {
+                    "categories": [
+                        "biolink:Gene"
+                    ]
+                }
+            },
+            "edges": {
+                "e0": {
+                    "subject": "n0",
+                    "object": "n1",
+                    "predicates": [
+                        "biolink:homologous_to",
+                        "biolink:orthologous_to"
+                    ]
+                }
+            }
+        }
+    }
+}
+
+
+
+####
+POST  {{base_url}}/v1/smartapi/978fe380a147a8641caf72320862697b/query
+Content-Type: application/json
+
+{
+    "message": {
+        "query_graph": {
+            "nodes": {
+                "n0": {
+                    "ids": [
+                        "NCBIGene:6658"
+                    ],
+                    "categories": [
+                        "biolink:Gene"
+                    ]
+                },
+                "n1": {
+		             "categories":[
+                         "biolink:GeneFamily"
+                        ]
+                }
+            },
+            "edges": {
+                "e0": {
+                    "subject": "n0",
+                    "object": "n1"
+                }
+            }
+        }
+    }
+}
+
+###
+
+#registered BTE API endpoint in ARS
+https://ars.ci.transltr.io/ara-bte/api/
+
+###
+# all registered Actors in ARS
+https://ars.ci.transltr.io/ars/api/actors
+
+
+###
+# https://github.com/NCATSTranslator/minihackathons/issues/160
+POST  {{base_url}}/v1/query
+Content-Type: application/json
+
+{
+    "message": {
+    "query_graph": {
+      "edges": {
+        "e0": {
+          "object": "n1",
+          "predicates": [
+            "biolink:negatively_regulates_entity_to_entity",
+            "biolink:entity_negatively_regulates_entity"
+          ],
+          "subject": "n0"
+        }
+      },
+      "nodes": {
+        "n0": {
+          "categories": [
+            "biolink:ChemicalSubstance"
+          ],
+          "name": "Chemical Substance"
+        },
+        "n1": {
+          "ids": [
+            "PR:000006933"
+          ],
+          "name": "EGFR"
+        }
+      }
+    }
+    }
+}
+
+
+###
+# https://github.com/NCATSTranslator/minihackathons/issues/157
+# This is a pretty long query
+POST  {{base_url}}/v1/query
+Content-Type: application/json
+
+{
+"message": {
+    "query_graph": {
+
+  "edges": {
+    "e1": {
+      "object": "n1",
+      "predicates": [
+        "biolink:has_normalized_google_distance_with",
+        "biolink:correlated_with"
+      ],
+      "subject": "n0"
+    }
+  },
+  "nodes": {
+    "n0": {
+      "ids": [
+        "MONDO:0005359",
+        "SNOMEDCT:197358007",
+        "MESH:D056487",
+        "NCIT:C26991"
+      ]
+    },
+    "n1": {
+      "categories": [
+        "biolink:DiseaseOrPhenotypicFeature"
+      ]
+    }
+  }
+
+    }
+  }
+}
+
+
+###
+# https://github.com/NCATSTranslator/testing/issues/91
+POST  {{base_url}}/v1/query
+Content-Type: application/json
+
+{
+    "message": {
+        "query_graph": {
+            "nodes": {
+                "n0": {
+                    "ids": [
+                        "HP:0002013"
+                    ],
+                    "categories": [
+                        "biolink:DiseaseOrPhenotypicFeature"
+                    ]
+                },
+                "n1": {
+		             "categories":[
+                         "biolink:ChemicalSubstance"
+                        ]
+                }
+            },
+            "edges": {
+                "e0": {
+                    "subject": "n0",
+                    "object": "n1",
+                    "predicates":["biolink:related_to"]
+
+                }
+            }
+        }
+    }
+}
+
+###
+# Ryan: https://ncatstranslator.slack.com/archives/C022EL8D3AB/p1627338809084200
+POST  {{base_url}}/v1/smartapi/d86a24f6027ffe778f84ba10a7a1861a/query
+Content-Type: application/json
+
+{
+    "message": {
+        "query_graph": {
+            "edges": {
+                "e00": {
+                    "subject": "n00",
+                    "object": "n01",
+                    "predicates": ["biolink:related_to"]
+                }
+            },
+            "nodes": {
+                "n00": {
+                    "categories": ["biolink:ChemicalSubstance"]
+                },
+                "n01": {
+                    "categories": ["biolink:Disease"],
+                    "ids": ["MONDO:0005301"]
+                }
+            }
+        }
+    }
+}
+
+
+###
+# https://github.com/NCATSTranslator/minihackathons/issues/139
+# POST  {{base_url}}/v1/query
+POST https://ars.transltr.io/ars/api/submit
+Content-Type: application/json
+
+{
+    "message": {
+        "query_graph": {
+            "edges": {
+                "e01": {
+                "object": "n0",
+                "predicates": [
+                    "biolink:entity_negatively_regulates_entity",
+                    "biolink:negatively_regulates_entity_to_entity"
+                ],
+                "subject": "n1"
+                }
+            },
+            "nodes": {
+                "n0": {
+                "categories": [
+                    "biolink:Gene"
+                ],
+                "ids": [
+                    "NCBIGene:23221"
+                ]
+                },
+                "n1": {}
+            }
+        }
+    }
+}
+
+
+###
+# https://github.com/NCATSTranslator/minihackathons/issues/142
+POST  {{base_url}}/v1/query
+Content-Type: application/json
+
+{
+    "message": {
+        "query_graph": {
+            "edges": {
+                "e01": {
+                "object": "n0",
+                "subject": "n1"
+                }
+            },
+            "nodes": {
+                "n0": {
+                "categories": [
+                    "biolink:Gene"
+                ],
+                "ids": [
+                    "NCBIGene:23221"
+                ]
+                },
+                "n1": {}
+            }
+        }
+    }
+}
+
+
+###
+# https://github.com/NCATSTranslator/minihackathons/issues/142
+POST  {{base_url}}/v1/query
+Content-Type: application/json
+
+{
+    "message": {
+        "query_graph": {
+            "edges": {
+                "e0": {
+                    "object": "n1",
+                    "predicates": [
+                        "biolink:correlated_with"
+                    ],
+                    "subject": "n0"
+                }
+            },
+            "nodes": {
+                "n0": {
+                    "ids": [
+                        "MONDO:0005359"
+                    ],
+                    "name": "drug-induced liver injury"
+                },
+                "n1": {
+                    "categories": [
+                        "biolink:DiseaseOrPhenotypicFeature"
+                    ],
+                    "name": "Disease Or Phenotypic Feature"
                 }
             }
         }
