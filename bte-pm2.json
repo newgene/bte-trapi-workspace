@@ -6,6 +6,7 @@
             "script": "./src/server.js",
     	    "exec_mode": "cluster",
             "autorestart": true,
+            "instance_var": "INSTANCE_ID",
             "env":{
                 "PORT": "3000",
                 "LOG": "./log"
