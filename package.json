@@ -9,6 +9,7 @@
     "watch2": "nodemon -e js,mjs,json,ts --watch packages --exec npm run compile",
     "debug": "npm run debug --workspace='@biothings-explorer/bte-trapi'",
     "clean": "rimraf \"packages/**/built\" \"packages/**/*.tsbuildinfo\"",
+    "clean_on_prod": "rimraf \"packages/**/__test__\" \"packages/**/.git\" \"packages/**/node_modules\"",
     "compile": "tsc -b tsconfig.build.json",
     "prettier": "prettier \"*.{js,json,yml,md}\" \"packages/**/*\"",
     "format": "npm run prettier -- --write",
