@@ -2,6 +2,8 @@
 # docker build --rm --force-rm --compress --squash -t biothings/bte-trapi .
 # Run:
 # docker run -it --rm -p 3000:3000 --name bte-trapi biothings/bte-trapi
+# Run with DEBUG logs enabled:
+# docker run -it --rm -p 3000:3000 --name bte-trapi -e DEBUG="biomedical-id-resolver,bte*" biothings/bte-trapi
 # Log into container:
 # docker exec -ti bte-trapi sh
 FROM node:16-alpine
@@ -13,12 +15,11 @@ RUN apk add --no-cache --virtual build-deps git
 COPY --chown=node:node . .
 USER node
 
-#RUN export GIT_REMOTE_PROTOCOL=https \
-#    && npm run clone
 RUN export GIT_REMOTE_PROTOCOL=https \
     && npm run clone \
     && npm i || true && npm i \
     && npm run compile \
+    && npm run --silent get_rev > .current_rev \
     && npm run clean_on_prod \
     && npm i --production || true
 USER root
