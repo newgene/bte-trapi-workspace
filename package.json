@@ -2,6 +2,7 @@
   "name": "bte-trapi-monorepo",
   "private": true,
   "scripts": {
+    "start_bull_board": "node ./bullboard/bin/www",
     "clone": "./scripts/clone_packages.sh",
     "pull": "./scripts/pull_packages.sh",
     "git": "./scripts/run_git_packages.sh",
@@ -40,5 +41,15 @@
     "./packages/biolink-model",
     "./packages/biomedical_id_resolver",
     "./packages/@biothings-explorer/bte-trapi"
-  ]
+  ],
+  "dependencies": {
+    "@bull-board/express": "^3.5.2",
+    "bull": "^3.28.1",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "pug": "^3.0.2"
+  }
 }
