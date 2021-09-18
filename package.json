@@ -21,6 +21,7 @@
     "prepare": "npm run compile"
   },
   "devDependencies": {
+    "@bull-monitor/express": "^2.5.0",
     "@bull-board/express": "^3.5.2",
     "@typescript-eslint/eslint-plugin": "^4.29.3",
     "@typescript-eslint/parser": "^4.29.3",
@@ -41,6 +42,7 @@
     "typescript": "4.3.4"
   },
   "//devDependencies": {
+    "@bull-monitor/express": "Bull monitor dependency",
     "@bull-board/express": "Bullboard dependency",
     "bull": "Bullboard dependency",
     "cookie-parser": "Bullboard dependency",

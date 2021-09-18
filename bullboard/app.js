@@ -7,6 +7,7 @@ const Queue = require('bull')
 const { createBullBoard } = require('@bull-board/api')
 const { BullAdapter } = require('@bull-board/api/bullAdapter')
 const { ExpressAdapter } = require('@bull-board/express')
+const { BullMonitorExpress } = require('@bull-monitor/express')
 
 //var indexRouter = require('./routes/index');
 
@@ -44,9 +45,23 @@ const { addQueue, removeQueue, setQueues, replaceQueues } = createBullBoard({
   serverAdapter:serverAdapter
 })
 
-//app.use('/', indexRouter);
-//serverAdapter.setBasePath('/')
+// bull board
 app.use('/', serverAdapter.getRouter());
+
+// bull monitor
+const queues = [
+  bullQueue1,
+  bullQueue2,
+  bullQueue3,
+]
+
+app.use('/monitor', async (req, res, next) => {
+  const monitor = new BullMonitorExpress({
+    queues,
+  });
+  await monitor.init();
+  monitor.router(req, res, next);
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
