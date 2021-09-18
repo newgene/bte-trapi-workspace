@@ -17,7 +17,7 @@ USER node
 
 RUN export GIT_REMOTE_PROTOCOL=https \
     && npm run clone \
-    && npm i || true && npm i \
+    && npm i --no-optional || true && npm i --no-optional \
     && npm run compile \
     && npm run --silent get_rev > .current_rev \
     && npm run clean_on_prod \
