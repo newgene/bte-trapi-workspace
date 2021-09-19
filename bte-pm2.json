@@ -18,7 +18,10 @@
                 "REDIS_PORT": 6379
             },
             "env_prod_nocache": {
-                "NODE_ENV": "production"
+                "NODE_ENV": "production",
+                "REDIS_HOST": "localhost",
+                "REDIS_PORT": 6379,
+                "RESULT_CACHING": false
             },
             "env_dev": {
                 "DEBUG": "biomedical-id-resolver,bte*"
